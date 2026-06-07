@@ -31,19 +31,30 @@ The entire platform capability is broken down across four primary operational mo
 *   **`Process Payments`** (Core Financial Transactional Infrastructure)
 
 ### 2. Transaction Behavioral Sequences (`Process Payments`)
-Our core payment subsystem handles calculations dynamically. The temporal sequence transitions cleanly down the activation lifeline:
+The backend transaction execution logic follows a strict chronological top-down execution sequence across the system lifelines, mapped directly from our verified StarUML design models:
 
-[Job Provider] ──(clickReleasePayment)──> [:PaymentConfirmationUI]
-│
-(initiateTransfer)
-│
-▼
-[:PaymentController] ──(requestFundRelease)──> [:DuitNow Gateway]
-│                                             │
-(ledgerUpdated) <───────(returnPaymentStatus)──────────┘
-│
-▼
-[:TransactionHistory]
+| Step | Source Object | Message Syntax / Operations | Target Destination | Line Style |
+| :---: | :--- | :--- | :--- | :---: |
+| **1** | `Job Provider` | `clickReleasePayment()` | `:PaymentConfirmationUI` | Solid (Call) |
+| **2** | `:PaymentConfirmationUI` | `initiateTransfer()` | `:PaymentController` | Solid (Call) |
+| **3** | `:PaymentController` | `requestFundRelease()` | `:DuitNow API Gateway` | Solid (Call) |
+| **4** | `:DuitNow API Gateway` | `returnPaymentStatus` | `:PaymentController` | Dashed (Reply) |
+| **5** | `:PaymentController` | `updateLedger()` | `:TransactionHistory` | Solid (Call) |
+| **6** | `:TransactionHistory` | `ledgerUpdated` | `:PaymentController` | Dashed (Reply) |
+| **7** | `:PaymentController` | `successScreen` | `:PaymentConfirmationUI` | Dashed (Reply) |
+
+```text
+       [CHRONOLOGICAL BACKEND CONTROL SEQUENCE FLOW]
+       
+  Job Provider      :PaymentConfirmationUI      :PaymentController      :TransactionHistory      :DuitNow API Gateway
+       │                      │                           │                      │                        │
+       │─── 1. clickRelease──>│                           │                      │                        │
+       │                      │─── 2. initiateTransfer───>│                      │                        │
+       │                      │                           │────────────────── 3. requestFundRelease ─────>│
+       │                      │                           │<────────────────── 4. returnPaymentStatus ────│
+       │                      │                           │─── 5. updateLedger──>│                        │
+       │                      │                           │<─── 6. ledgerUpdated─│                        │
+       │                      │<─── 7. successScreen ─────│                      │                        │
 
 ### 3. Core Object Lifecycle State Machine
 The volatile lifecycle status parameters of a platform transaction are monitored using the following state machine transitions:
