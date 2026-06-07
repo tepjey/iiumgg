@@ -43,7 +43,7 @@ The backend transaction execution logic follows a strict chronological top-down 
 | **6** | `:TransactionHistory` | `ledgerUpdated` | `:PaymentController` | Dashed (Reply) |
 | **7** | `:PaymentController` | `successScreen` | `:PaymentConfirmationUI` | Dashed (Reply) |
 
-```text
+```
        [CHRONOLOGICAL BACKEND CONTROL SEQUENCE FLOW]
        
   Job Provider      :PaymentConfirmationUI      :PaymentController      :TransactionHistory      :DuitNow API Gateway
@@ -55,6 +55,7 @@ The backend transaction execution logic follows a strict chronological top-down 
        │                      │                           │─── 5. updateLedger──>│                        │
        │                      │                           │<─── 6. ledgerUpdated─│                        │
        │                      │<─── 7. successScreen ─────│                      │                        │
+```
 
 ### 3. Core Object Lifecycle State Machine
 The volatile lifecycle status parameters of a platform transaction are monitored using the following state machine transitions:
