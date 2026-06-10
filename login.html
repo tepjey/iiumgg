@@ -1,0 +1,176 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>GardenGigs Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link rel="stylesheet" href="style.css">
+<script src="auth.js" defer></script>
+
+<style>
+body{
+    font-family:'DM Sans',sans-serif;
+    background:#f8f9f4;
+}
+
+.font-display{
+    font-family:'Fraunces',serif;
+}
+
+.login-card{
+    background:white;
+    border-radius:28px;
+    box-shadow:0 12px 30px rgba(44,50,34,0.08);
+    border:1px solid rgba(188,232,188,.4);
+}
+
+.gradient-btn{
+    background:linear-gradient(135deg,#33a033,#248024);
+    transition:.2s ease;
+}
+
+.gradient-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(36,128,36,.25);
+}
+
+.field-input{
+    width:100%;
+    border:1.5px solid #dce6d2;
+    background:#f8f9f4;
+    border-radius:16px;
+    padding:14px;
+    outline:none;
+}
+
+.field-input:focus{
+    border-color:#33a033;
+    box-shadow:0 0 0 4px rgba(51,160,51,.1);
+}
+</style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-5">
+
+<div class="w-full max-w-md">
+
+    <!-- Logo -->
+    <div class="text-center mb-6">
+
+        <div class="w-20 h-20 mx-auto rounded-[24px] bg-green-600 flex items-center justify-center shadow-lg mb-4">
+            <i data-lucide="leaf" class="text-white w-9 h-9"></i>
+        </div>
+
+        <h1 class="font-display text-4xl text-[#2c3222] font-semibold">
+            GardenGigs
+        </h1>
+
+        <p class="text-[#9aab8a] text-sm mt-2">
+            Login to continue your campus gig journey 🌿
+        </p>
+
+    </div>
+
+    <!-- Card -->
+    <div class="login-card p-7">
+
+        <h2 class="font-display text-2xl text-[#2c3222] mb-6 font-semibold">
+            Welcome Back
+        </h2>
+
+        <!-- Form -->
+        <form onsubmit="login(event)">
+
+            <div class="mb-4">
+                <label class="block text-sm font-semibold text-[#2c3222] mb-2">
+                    Email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    class="field-input"
+                    placeholder="example@email.com"
+                    required
+                >
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-[#2c3222] mb-2">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    class="field-input"
+                    placeholder="••••••••"
+                    required
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="gradient-btn text-white font-bold rounded-2xl py-4 w-full"
+            >
+                Login
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-3 my-6">
+            <div class="flex-1 h-[1px] bg-[#dce6d2]"></div>
+            <span class="text-xs text-[#9aab8a] font-semibold">
+                OR
+            </span>
+            <div class="flex-1 h-[1px] bg-[#dce6d2]"></div>
+        </div>
+
+        <!-- Signup -->
+        <a
+            href="signup.html"
+            class="block text-center border-2 border-green-200 text-green-700 py-4 rounded-2xl font-bold hover:bg-green-50 transition"
+        >
+            Create New Account
+        </a>
+
+        <!-- Demo Admin -->
+        <div class="bg-green-50 rounded-2xl p-4 mt-5 border border-green-100">
+
+            <p class="font-semibold text-green-800 text-sm mb-2">
+                Demo Admin Account
+            </p>
+
+            <p class="text-sm text-green-700">
+                Email: admin@gardengigs.com
+            </p>
+
+            <p class="text-sm text-green-700">
+                Password: admin123
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>
+```

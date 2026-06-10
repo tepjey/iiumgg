@@ -22,7 +22,7 @@ tailwind.config = {
         display: ['Fraunces', 'serif'],
       },
       boxShadow: {
-        neo:    '6px 6px 16px #d1d9c8, -4px -4px 12px #ffffff',
+        neo:    '6px 6px 16px #d1d9c8, -4px -4px 12px #4a3838',
         'neo-sm':'3px 3px 8px #d1d9c8, -2px -2px 6px #ffffff',
         'neo-inset':'inset 4px 4px 10px #cdd5c4, inset -3px -3px 8px #ffffff',
         card:   '0 2px 12px rgba(44,50,34,0.08)',
